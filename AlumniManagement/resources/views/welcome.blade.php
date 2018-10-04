@@ -1,3 +1,8 @@
+@desktop
+<h1>Desktop view</h1>
+@elsedesktop
+<h1>Mobile view</h1>
+@enddesktop
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>

@@ -10,10 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//trang chủ gọi đến file welcome.blade.template
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/alumni/{id}', 'HomeController@show');
+//trang alumni gọi phương thức show của HomeController
+Route::get('/alumni', 'HomeController@show');
 
