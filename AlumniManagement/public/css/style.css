@@ -1,0 +1,197 @@
+.body{
+    margin-top: 20px;
+}
+.body a{
+    cursor: pointer;
+}
+
+.body a:hover{
+    text-decoration: none;
+}
+.body li {
+    list-style-type: none;
+    align-content: center;
+    margin-right: 30px;
+}
+.body .row {
+    margin-top: 30px;
+}
+
+.wrapper:hover,
+.wrapper:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+}
+
+/*Style for side bar*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow:auto;
+    transition: 0.5s;
+    padding-top: 60px;
+
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a.underline:after {
+	content: '';
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  height: 1em;
+  width: 100%;
+  border-bottom: 1px solid;
+  margin-top: 10px;
+  opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: scale(0,1);
+	transform: scale(0,1);
+}
+
+.sidenav a.underline:hover:after {
+  opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.sidenav img {
+    width: 80%;
+    margin-left: 25px;
+}
+
+/*Style for card (source:bootsnipp.com)*/
+.wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: 100%;
+}
+
+.avt {
+    align-self: center;
+    color: black;
+    flex: 1 1 auto;
+    font-size: 32px;
+    padding: 20px;
+    width: 10rem;
+    float: left;
+}
+
+.content-card {
+    color: black;
+    flex: 12 1 auto;
+    padding: 20px;
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-left-color: grey;
+    float: right;
+}
+
+.bordered {
+    box-shadow: 3px 5px 15px grey;
+    border-width: 2px;
+    border-color: grey;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.content b{
+    margin-left: 1em;
+}
+
+.content span {
+    margin-left: 2em;
+}
+
+/*Form*/
+div form input{
+    display: block;
+    margin-bottom: 10px;
+}
+
+#pic{
+     display: none;
+}
+
+.newbtn{
+    cursor: pointer;
+}
+#blah{
+    height: 180px;
+    width: 180px;
+    margin-top:20px;
+}
+
+.item {
+    position:relative;
+    padding-top:20px;
+    display:inline-block;
+}
+.notify-badge{
+    position: absolute;
+    right: -20px;
+    bottom: -10px;
+    background:grey;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    border-style: solid;
+    border-color: white;
+    box-shadow: 0px 0px 3px #000000;
+    color:white;
+    padding:5px 10px;
+    font-size:20px;
+}
+
+    .avatar{
+        background-color: #3f9ae5;
+        border-radius: 0 0 15px 15px;
+    }
+    .title{
+        text-align: center;
+        font-style: italic;
+    }
+    .rounded-circle{
+        border: 10px gray solid;
+
+    }
+    .link{
+        padding-top: 20px;
+    }
+    .icon{
+        padding: 15px;
+    }
+
+    .nav-text {
+        font-size: 20px;
+    }
+
+    .jumbotron {
+        background-color: #ffffff !important;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }

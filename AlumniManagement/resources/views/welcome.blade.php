@@ -1,8 +1,14 @@
-@desktop
-<h1>Desktop view</h1>
-@elsedesktop
+@mobile
 <h1>Mobile view</h1>
-@enddesktop
+@elsemobile
+<h1>Desktop view</h1>
+@endmobile
+
+@tablet
+tablet view
+@elsetablet
+not tablet
+@endtablet
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>

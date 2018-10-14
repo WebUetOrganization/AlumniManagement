@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorksTable extends Migration
+class CreateAlumniCompanyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateWorksTable extends Migration
      */
     public function up()
     {
-        Schema::create('works', function (Blueprint $table) {
+        Schema::create('alumni_company', function (Blueprint $table) {
             $table->string('job', 255);
             $table->integer('salary');
-            $table->date('time');
             $table->unsignedInteger('alumni_id');
             $table->unsignedInteger('company_id');
             $table->foreign('alumni_id')
@@ -41,6 +40,6 @@ class CreateWorksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('works');
+        Schema::dropIfExists('alumni_company');
     }
 }

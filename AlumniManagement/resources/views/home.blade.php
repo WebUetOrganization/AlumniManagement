@@ -9,4 +9,10 @@
     <p>{{$al->course->name}}</p>
     <p>{{$al->province->name}}</p>
     <p>{{$al->district->name}}</p>
+    @foreach($al->company as $co)
+        <p>{{$co->name}}</p>
+        <p>{{$co->pivot->job}}</p>
+        <p>{{$co->pivot->salary}}</p>
+        <p>{{$co->pivot->time}}</p>
+    @endforeach
 @endforeach

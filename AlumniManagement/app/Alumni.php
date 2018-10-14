@@ -20,4 +20,9 @@ class Alumni extends Model
     public function district(){
         return $this->belongsTo('App\District');
     }
+    //tạo quan hệ n-n với bảng cty, tạo bảng alumni_company để lưu thông tin về công việc của sv trong cty đó
+    public function company(){
+        return $this->belongsToMany('App\Company', 'alumni_company', 'alumni_id', 'company_id')
+            ->withPivot('job','salary', 'start_time', 'quit_time')->withTimestamps();
+    }
 }
