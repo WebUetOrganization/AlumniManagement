@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alumni extends Model
 {
+
+    protected $fillable = [
+        'name', 'mail'
+    ];
+
     //
     protected $table = 'alumni';
     //tao lien ket 1-n voi bang courses, n sinh vien - 1 course
@@ -24,5 +29,9 @@ class Alumni extends Model
     public function company(){
         return $this->belongsToMany('App\Company', 'alumni_company', 'alumni_id', 'company_id')
             ->withPivot('job','salary', 'start_time', 'quit_time')->withTimestamps();
+    }
+
+    public function user(){
+        return $this->hasOne('App\User');
     }
 }

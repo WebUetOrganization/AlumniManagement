@@ -1,3 +1,4 @@
+
 .body{
     margin-top: 20px;
 }
@@ -19,8 +20,8 @@
 
 .wrapper:hover,
 .wrapper:focus {
-  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
-  transform: translateY(-0.25em);
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
 }
 
 /*Style for side bar*/
@@ -28,14 +29,16 @@
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index:1040;
     top: 0;
     left: 0;
     background-color: #111;
     overflow:auto;
     transition: 0.5s;
     padding-top: 60px;
-
+}
+a:hover{
+    text-decoration: none;
 }
 
 .sidenav a {
@@ -47,26 +50,32 @@
     transition: 0.3s;
 }
 
+a.sideavt{
+    padding: 8px 8px 8px 10px;
+    !important;
+}
+
 .sidenav a.underline:after {
-	content: '';
-  position: absolute;
-  left: 0;
-  display: inline-block;
-  height: 1em;
-  width: 100%;
-  border-bottom: 1px solid;
-  margin-top: 10px;
-  opacity: 0;
-	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-	transition: opacity 0.35s, transform 0.35s;
-	-webkit-transform: scale(0,1);
-	transform: scale(0,1);
+    content: '';
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    height: 1em;
+    width: 100%;
+    border-bottom: 1px solid;
+    margin-top: 10px;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: scale(0,1);
+    transform: scale(0,1);
 }
 
 .sidenav a.underline:hover:after {
-  opacity: 1;
-	-webkit-transform: scale(1);
-	transform: scale(1);
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+
 }
 
 .sidenav .closebtn {
@@ -103,17 +112,13 @@
     color: black;
     flex: 12 1 auto;
     padding: 20px;
-    border-left-style: solid;
-    border-left-width: 2px;
-    border-left-color: grey;
+    border-left: #ced4da solid 1px;
     float: right;
 }
 
 .bordered {
     box-shadow: 3px 5px 15px grey;
-    border-width: 2px;
-    border-color: grey;
-    border-style: solid;
+    border: 1px solid #ced4da;
     border-radius: 10px;
 }
 
@@ -132,7 +137,7 @@ div form input{
 }
 
 #pic{
-     display: none;
+    display: none;
 }
 
 .newbtn{
@@ -150,6 +155,7 @@ div form input{
     display:inline-block;
 }
 .notify-badge{
+    display: none;
     position: absolute;
     right: -20px;
     bottom: -10px;
@@ -164,34 +170,42 @@ div form input{
     font-size:20px;
 }
 
-    .avatar{
-        background-color: #3f9ae5;
-        border-radius: 0 0 15px 15px;
-    }
-    .title{
-        text-align: center;
-        font-style: italic;
-    }
-    .rounded-circle{
-        border: 10px gray solid;
+.avatar{
+    background-color: #e2f0fb;
+    border-radius: 0 0 15px 15px;
+}
+.title{
+    text-align: center;
+    font-style: italic;
+}
+.rounded-circle{
+    border: 4px white solid;
+}
+.link{
+    padding-top: 20px;
+}
+.icon{
+    padding: 15px;
+}
 
-    }
-    .link{
-        padding-top: 20px;
-    }
-    .icon{
-        padding: 15px;
-    }
+.nav-text {
+    font-size: 20px;
+}
 
-    .nav-text {
-        font-size: 20px;
-    }
+.jumbotron {
+    background-color: #ffffff !important;
+}
 
-    .jumbotron {
-        background-color: #ffffff !important;
-    }
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
 
-    .btn-primary {
-        background-color: #007bff;
-        border: none;
-    }
+.popup {
+    margin-bottom: 20px;
+    clear:both;
+}
+.inf {
+    display: flex;
+    float: left;
+}

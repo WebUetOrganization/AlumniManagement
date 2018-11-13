@@ -3,3 +3,4 @@
 @section('content')
     @each('card', $alumni, 'al')
 @endsection
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Alumni;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -28,13 +29,14 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/update';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -63,9 +65,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $alumnus = Alumni::create([
+                'name' =>$data['name'],
+                'mail' =>$data['email']
+        ]);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'alumni_id' => $alumnus->id,
             'password' => Hash::make($data['password']),
         ]);
     }
