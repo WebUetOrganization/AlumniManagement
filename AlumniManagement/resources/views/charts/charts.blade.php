@@ -1,6 +1,7 @@
 @extends('index')
 @section('title', 'Alumni.org')
 @section('content')
+    {{--chart menu--}}
     <div class="container">
         <div class="text-center mb-5" style="margin-top: 80px">
             <h3 class="text-primary">User Statistics</h3>
@@ -13,19 +14,19 @@
                         <div id="item-1" class="collapse">
                             <ul class="nav flex-column ml-3">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="http://alumni.pro/statistics#geography">Địa lý</a>
+                                    <a class="nav-link" href="http://alumnus.vn/statistics#geography">Địa lý</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="http://alumni.pro/statistics#age">tuổi</a>
+                                    <a class="nav-link" href="http://alumnus.vn/statistics#age">tuổi</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="http://alumni.pro/statistics#edu">Giáo dục</a>
+                                    <a class="nav-link" href="http://alumnus.vn/statistics#edu">Giáo dục</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="http://alumni.pro/statistics#gender">Giới tính</a>
+                                    <a class="nav-link" href="http://alumnus.vn/statistics#gender">Giới tính</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="http://alumni.pro/statistics#others">Khác</a>
+                                    <a class="nav-link" href="http://alumnus.vn/statistics#others">Khác</a>
                                 </li>
                             </ul>
                         </div>
@@ -35,13 +36,13 @@
                         <div id="item-2" class="collapse">
                             <ul class="nav flex-column ml-3">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="http://alumni.pro/statistics#work">Nghề nghiệp</a>
+                                    <a class="nav-link" href="http://alumnus.vn/statistics#work">Nghề nghiệp</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="http://alumni.pro/statistics#time">Thời gian làm việc</a>
+                                    <a class="nav-link" href="http://alumnus.vn/statistics#time">Thời gian làm việc</a>
                                 </li>
                                 <li class="nav-item" href="#">
-                                    <a class="nav-link" href="http://alumni.pro/statistics#environment">Môi trường làm việc</a>
+                                    <a class="nav-link" href="http://alumnus.vn/statistics#environment">Môi trường làm việc</a>
                                 </li>
                             </ul>
                         </div>

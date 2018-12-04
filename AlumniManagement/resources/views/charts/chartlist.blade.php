@@ -1,15 +1,6 @@
 @extends('charts.charts')
 @section('chart-content')
 
-    <section id="geography" class="mt-3 mb-5">
-        <div class="text-left text-primary">
-            <h4><span class="border-bottom border-primary">Phân bố địa lý người dùng</span></h4>
-        </div>
-        <div class="d-flex justify-content-left">
-            {!! $geo->container() !!}
-        </div>
-    </section>
-
     <section id="age" class="mt-3 mb-5">
         <div class="text-left text-primary">
             <h4><span class="border-bottom border-primary">Độ tuổi</span></h4>

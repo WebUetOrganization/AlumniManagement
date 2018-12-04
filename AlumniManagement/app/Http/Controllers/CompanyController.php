@@ -35,6 +35,11 @@ class CompanyController
     public function updateJob(Request $request){
         $sv = Auth::user()->alumni;
         $alumnus = Alumni::find($sv->id);
+        //update thong tin ve cong ty
+        if ($request->filled('company')){
+            Company::where('id', $request->input('choice1'))
+                ->update(['name' => $request->input('address')]);
+        }
         if ($request->filled('address')){
             Company::where('id', $request->input('choice1'))
                 ->update(['address' => $request->input('address')]);
@@ -44,12 +49,27 @@ class CompanyController
                 ->update(['type' => $request->input('choice2')]);
         }
         $comp = Company::where('id', $request->input('choice1'))->first();
-        $alumnus->company()->updateExistingPivot($comp, [
-            'start_time' => $request->input('start'),
-            'quit_time' => $request->input('quit'),
-            'job' => $request->input('job'),
-            'salary' => $request->input('salary')
-        ]);
+        //update thong tin ve cong viec
+        if($request->filled('start')){
+            $alumnus->company()->updateExistingPivot($comp, [
+                'start_time' => $request->input('start')
+            ]);
+        }
+        if($request->filled('quit')){
+            $alumnus->company()->updateExistingPivot($comp, [
+                'quit_time' => $request->input('quit')
+            ]);
+        }
+        if($request->filled('job')){
+            $alumnus->company()->updateExistingPivot($comp, [
+                'job' => $request->input('job')
+            ]);
+        }
+        if($request->filled('salary')){
+            $alumnus->company()->updateExistingPivot($comp, [
+                'salary' => $request->input('salary')
+            ]);
+        }
         return redirect()->route('profile', $alumnus->id);
     }
 }

@@ -91,6 +91,10 @@ a.sideavt{
     margin-left: 25px;
 }
 
+.navbar-brand {
+    text-align: center;
+}
+
 /*Style for card (source:bootsnipp.com)*/
 .wrapper {
     display: flex;
@@ -155,7 +159,6 @@ div form input{
     display:inline-block;
 }
 .notify-badge{
-    display: none;
     position: absolute;
     right: -20px;
     bottom: -10px;

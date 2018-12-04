@@ -1,5 +1,5 @@
 @extends('index')
-@section('title', 'Alumni.org')
+@section('title', 'Alumnus.vn')
 @section('content')
     @each('card', $alumni, 'al')
 @endsection

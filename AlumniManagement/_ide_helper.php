@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.5 on 2018-11-10 07:28:58.
+ * Generated for Laravel 5.7.13 on 2018-11-20 11:41:55.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -806,7 +806,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Define a contextual binding.
          *
-         * @param string $concrete
+         * @param array|string $concrete
          * @return \Illuminate\Contracts\Container\ContextualBindingBuilder 
          * @static 
          */ 
@@ -2602,6 +2602,7 @@ namespace Illuminate\Support\Facades {
      *
      * @method static \Illuminate\Contracts\Cache\Repository  store(string|null $name = null)
      * @method static bool has(string $key)
+     * @method static bool missing(string $key)
      * @method static mixed get(string $key, mixed $default = null)
      * @method static mixed pull(string $key, mixed $default = null)
      * @method static void put(string $key, $value, \DateTimeInterface|\DateInterval|float|int $minutes)
@@ -2635,7 +2636,7 @@ namespace Illuminate\Support\Facades {
          * Get a cache driver instance.
          *
          * @param string|null $driver
-         * @return mixed 
+         * @return \Illuminate\Contracts\Cache\Repository 
          * @static 
          */ 
         public static function driver($driver = null)
@@ -2679,6 +2680,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Unset the given driver instances.
+         *
+         * @param array|string|null $name
+         * @return $this 
+         * @static 
+         */ 
+        public static function forgetDriver($name = null)
+        {
+            return \Illuminate\Cache\CacheManager::forgetDriver($name);
+        }
+        
+        /**
          * Register a custom driver creator Closure.
          *
          * @param string $driver
@@ -2701,6 +2714,18 @@ namespace Illuminate\Support\Facades {
         public static function has($key)
         {
             return \Illuminate\Cache\Repository::has($key);
+        }
+        
+        /**
+         * Determine if an item doesn't exist in the cache.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */ 
+        public static function missing($key)
+        {
+            return \Illuminate\Cache\Repository::missing($key);
         }
         
         /**
@@ -2876,7 +2901,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get an item from the cache, or store the default value.
+         * Get an item from the cache, or execute the given Closure and store the result.
          *
          * @param string $key
          * @param \DateTimeInterface|\DateInterval|float|int $minutes
@@ -2890,7 +2915,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get an item from the cache, or store the default value forever.
+         * Get an item from the cache, or execute the given Closure and store the result forever.
          *
          * @param string $key
          * @param \Closure $callback
@@ -2903,7 +2928,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get an item from the cache, or store the default value forever.
+         * Get an item from the cache, or execute the given Closure and store the result forever.
          *
          * @param string $key
          * @param \Closure $callback
@@ -3716,7 +3741,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getSchemaBuilder()
         {
-            return \Illuminate\Database\MySqlConnection::getSchemaBuilder();
+            //Method inherited from \Illuminate\Database\MySqlConnection            
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getSchemaBuilder();
         }
         
         /**
@@ -3729,7 +3755,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function bindValues($statement, $bindings)
         {
-            \Illuminate\Database\MySqlConnection::bindValues($statement, $bindings);
+            //Method inherited from \Illuminate\Database\MySqlConnection            
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::bindValues($statement, $bindings);
         }
         
         /**
@@ -3741,7 +3768,7 @@ namespace Illuminate\Support\Facades {
         public static function useDefaultQueryGrammar()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::useDefaultQueryGrammar();
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::useDefaultQueryGrammar();
         }
         
         /**
@@ -3753,7 +3780,7 @@ namespace Illuminate\Support\Facades {
         public static function useDefaultSchemaGrammar()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::useDefaultSchemaGrammar();
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::useDefaultSchemaGrammar();
         }
         
         /**
@@ -3765,7 +3792,7 @@ namespace Illuminate\Support\Facades {
         public static function useDefaultPostProcessor()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::useDefaultPostProcessor();
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::useDefaultPostProcessor();
         }
         
         /**
@@ -3778,7 +3805,7 @@ namespace Illuminate\Support\Facades {
         public static function table($table)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::table($table);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::table($table);
         }
         
         /**
@@ -3790,7 +3817,7 @@ namespace Illuminate\Support\Facades {
         public static function query()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::query();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::query();
         }
         
         /**
@@ -3805,7 +3832,7 @@ namespace Illuminate\Support\Facades {
         public static function selectOne($query, $bindings = array(), $useReadPdo = true)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::selectOne($query, $bindings, $useReadPdo);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::selectOne($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -3819,7 +3846,7 @@ namespace Illuminate\Support\Facades {
         public static function selectFromWriteConnection($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::selectFromWriteConnection($query, $bindings);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::selectFromWriteConnection($query, $bindings);
         }
         
         /**
@@ -3834,7 +3861,7 @@ namespace Illuminate\Support\Facades {
         public static function select($query, $bindings = array(), $useReadPdo = true)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::select($query, $bindings, $useReadPdo);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::select($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -3849,7 +3876,7 @@ namespace Illuminate\Support\Facades {
         public static function cursor($query, $bindings = array(), $useReadPdo = true)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::cursor($query, $bindings, $useReadPdo);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::cursor($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -3863,7 +3890,7 @@ namespace Illuminate\Support\Facades {
         public static function insert($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::insert($query, $bindings);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::insert($query, $bindings);
         }
         
         /**
@@ -3877,7 +3904,7 @@ namespace Illuminate\Support\Facades {
         public static function update($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::update($query, $bindings);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::update($query, $bindings);
         }
         
         /**
@@ -3891,7 +3918,7 @@ namespace Illuminate\Support\Facades {
         public static function delete($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::delete($query, $bindings);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::delete($query, $bindings);
         }
         
         /**
@@ -3905,7 +3932,7 @@ namespace Illuminate\Support\Facades {
         public static function statement($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::statement($query, $bindings);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::statement($query, $bindings);
         }
         
         /**
@@ -3919,7 +3946,7 @@ namespace Illuminate\Support\Facades {
         public static function affectingStatement($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::affectingStatement($query, $bindings);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::affectingStatement($query, $bindings);
         }
         
         /**
@@ -3932,7 +3959,7 @@ namespace Illuminate\Support\Facades {
         public static function unprepared($query)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::unprepared($query);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::unprepared($query);
         }
         
         /**
@@ -3945,7 +3972,7 @@ namespace Illuminate\Support\Facades {
         public static function pretend($callback)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::pretend($callback);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::pretend($callback);
         }
         
         /**
@@ -3958,7 +3985,7 @@ namespace Illuminate\Support\Facades {
         public static function prepareBindings($bindings)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::prepareBindings($bindings);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::prepareBindings($bindings);
         }
         
         /**
@@ -3973,7 +4000,7 @@ namespace Illuminate\Support\Facades {
         public static function logQuery($query, $bindings, $time = null)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::logQuery($query, $bindings, $time);
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::logQuery($query, $bindings, $time);
         }
         
         /**
@@ -3986,7 +4013,7 @@ namespace Illuminate\Support\Facades {
         public static function listen($callback)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::listen($callback);
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::listen($callback);
         }
         
         /**
@@ -3999,7 +4026,7 @@ namespace Illuminate\Support\Facades {
         public static function raw($value)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::raw($value);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::raw($value);
         }
         
         /**
@@ -4012,7 +4039,7 @@ namespace Illuminate\Support\Facades {
         public static function recordsHaveBeenModified($value = true)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::recordsHaveBeenModified($value);
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::recordsHaveBeenModified($value);
         }
         
         /**
@@ -4024,7 +4051,7 @@ namespace Illuminate\Support\Facades {
         public static function isDoctrineAvailable()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::isDoctrineAvailable();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::isDoctrineAvailable();
         }
         
         /**
@@ -4038,7 +4065,7 @@ namespace Illuminate\Support\Facades {
         public static function getDoctrineColumn($table, $column)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getDoctrineColumn($table, $column);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getDoctrineColumn($table, $column);
         }
         
         /**
@@ -4050,7 +4077,7 @@ namespace Illuminate\Support\Facades {
         public static function getDoctrineSchemaManager()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getDoctrineSchemaManager();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getDoctrineSchemaManager();
         }
         
         /**
@@ -4062,7 +4089,7 @@ namespace Illuminate\Support\Facades {
         public static function getDoctrineConnection()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getDoctrineConnection();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getDoctrineConnection();
         }
         
         /**
@@ -4074,7 +4101,7 @@ namespace Illuminate\Support\Facades {
         public static function getPdo()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getPdo();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getPdo();
         }
         
         /**
@@ -4086,7 +4113,7 @@ namespace Illuminate\Support\Facades {
         public static function getReadPdo()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getReadPdo();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getReadPdo();
         }
         
         /**
@@ -4099,7 +4126,7 @@ namespace Illuminate\Support\Facades {
         public static function setPdo($pdo)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::setPdo($pdo);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::setPdo($pdo);
         }
         
         /**
@@ -4112,7 +4139,7 @@ namespace Illuminate\Support\Facades {
         public static function setReadPdo($pdo)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::setReadPdo($pdo);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::setReadPdo($pdo);
         }
         
         /**
@@ -4125,7 +4152,7 @@ namespace Illuminate\Support\Facades {
         public static function setReconnector($reconnector)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::setReconnector($reconnector);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::setReconnector($reconnector);
         }
         
         /**
@@ -4137,7 +4164,7 @@ namespace Illuminate\Support\Facades {
         public static function getName()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getName();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getName();
         }
         
         /**
@@ -4150,7 +4177,7 @@ namespace Illuminate\Support\Facades {
         public static function getConfig($option = null)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getConfig($option);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getConfig($option);
         }
         
         /**
@@ -4162,7 +4189,7 @@ namespace Illuminate\Support\Facades {
         public static function getDriverName()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getDriverName();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getDriverName();
         }
         
         /**
@@ -4174,7 +4201,7 @@ namespace Illuminate\Support\Facades {
         public static function getQueryGrammar()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getQueryGrammar();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getQueryGrammar();
         }
         
         /**
@@ -4187,7 +4214,7 @@ namespace Illuminate\Support\Facades {
         public static function setQueryGrammar($grammar)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::setQueryGrammar($grammar);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::setQueryGrammar($grammar);
         }
         
         /**
@@ -4199,7 +4226,7 @@ namespace Illuminate\Support\Facades {
         public static function getSchemaGrammar()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getSchemaGrammar();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getSchemaGrammar();
         }
         
         /**
@@ -4212,7 +4239,7 @@ namespace Illuminate\Support\Facades {
         public static function setSchemaGrammar($grammar)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::setSchemaGrammar($grammar);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::setSchemaGrammar($grammar);
         }
         
         /**
@@ -4224,7 +4251,7 @@ namespace Illuminate\Support\Facades {
         public static function getPostProcessor()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getPostProcessor();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getPostProcessor();
         }
         
         /**
@@ -4237,7 +4264,7 @@ namespace Illuminate\Support\Facades {
         public static function setPostProcessor($processor)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::setPostProcessor($processor);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::setPostProcessor($processor);
         }
         
         /**
@@ -4249,7 +4276,7 @@ namespace Illuminate\Support\Facades {
         public static function getEventDispatcher()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getEventDispatcher();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getEventDispatcher();
         }
         
         /**
@@ -4262,7 +4289,7 @@ namespace Illuminate\Support\Facades {
         public static function setEventDispatcher($events)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::setEventDispatcher($events);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::setEventDispatcher($events);
         }
         
         /**
@@ -4274,7 +4301,7 @@ namespace Illuminate\Support\Facades {
         public static function unsetEventDispatcher()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::unsetEventDispatcher();
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::unsetEventDispatcher();
         }
         
         /**
@@ -4286,7 +4313,7 @@ namespace Illuminate\Support\Facades {
         public static function pretending()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::pretending();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::pretending();
         }
         
         /**
@@ -4298,7 +4325,7 @@ namespace Illuminate\Support\Facades {
         public static function getQueryLog()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getQueryLog();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getQueryLog();
         }
         
         /**
@@ -4310,7 +4337,7 @@ namespace Illuminate\Support\Facades {
         public static function flushQueryLog()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::flushQueryLog();
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::flushQueryLog();
         }
         
         /**
@@ -4322,7 +4349,7 @@ namespace Illuminate\Support\Facades {
         public static function enableQueryLog()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::enableQueryLog();
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::enableQueryLog();
         }
         
         /**
@@ -4334,7 +4361,7 @@ namespace Illuminate\Support\Facades {
         public static function disableQueryLog()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::disableQueryLog();
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::disableQueryLog();
         }
         
         /**
@@ -4346,7 +4373,7 @@ namespace Illuminate\Support\Facades {
         public static function logging()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::logging();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::logging();
         }
         
         /**
@@ -4358,7 +4385,7 @@ namespace Illuminate\Support\Facades {
         public static function getDatabaseName()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getDatabaseName();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getDatabaseName();
         }
         
         /**
@@ -4371,7 +4398,7 @@ namespace Illuminate\Support\Facades {
         public static function setDatabaseName($database)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::setDatabaseName($database);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::setDatabaseName($database);
         }
         
         /**
@@ -4383,7 +4410,7 @@ namespace Illuminate\Support\Facades {
         public static function getTablePrefix()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getTablePrefix();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getTablePrefix();
         }
         
         /**
@@ -4396,7 +4423,7 @@ namespace Illuminate\Support\Facades {
         public static function setTablePrefix($prefix)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::setTablePrefix($prefix);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::setTablePrefix($prefix);
         }
         
         /**
@@ -4409,7 +4436,7 @@ namespace Illuminate\Support\Facades {
         public static function withTablePrefix($grammar)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::withTablePrefix($grammar);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::withTablePrefix($grammar);
         }
         
         /**
@@ -4423,7 +4450,7 @@ namespace Illuminate\Support\Facades {
         public static function resolverFor($driver, $callback)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::resolverFor($driver, $callback);
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::resolverFor($driver, $callback);
         }
         
         /**
@@ -4436,7 +4463,7 @@ namespace Illuminate\Support\Facades {
         public static function getResolver($driver)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::getResolver($driver);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::getResolver($driver);
         }
         
         /**
@@ -4451,7 +4478,7 @@ namespace Illuminate\Support\Facades {
         public static function transaction($callback, $attempts = 1)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::transaction($callback, $attempts);
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::transaction($callback, $attempts);
         }
         
         /**
@@ -4464,7 +4491,7 @@ namespace Illuminate\Support\Facades {
         public static function beginTransaction()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::beginTransaction();
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::beginTransaction();
         }
         
         /**
@@ -4476,7 +4503,7 @@ namespace Illuminate\Support\Facades {
         public static function commit()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::commit();
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::commit();
         }
         
         /**
@@ -4490,7 +4517,7 @@ namespace Illuminate\Support\Facades {
         public static function rollBack($toLevel = null)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Illuminate\Database\MySqlConnection::rollBack($toLevel);
+            \Larapack\DoctrineSupport\Connections\MySqlConnection::rollBack($toLevel);
         }
         
         /**
@@ -4502,7 +4529,7 @@ namespace Illuminate\Support\Facades {
         public static function transactionLevel()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::transactionLevel();
+            return \Larapack\DoctrineSupport\Connections\MySqlConnection::transactionLevel();
         }
          
     }
@@ -4894,6 +4921,19 @@ namespace Illuminate\Support\Facades {
         public static function put($path, $contents, $lock = false)
         {
             return \Illuminate\Filesystem\Filesystem::put($path, $contents, $lock);
+        }
+        
+        /**
+         * Write the contents of a file, replacing it atomically if it already exists.
+         *
+         * @param string $path
+         * @param string $content
+         * @return void 
+         * @static 
+         */ 
+        public static function replace($path, $content)
+        {
+            \Illuminate\Filesystem\Filesystem::replace($path, $content);
         }
         
         /**
@@ -6045,12 +6085,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function debug($message, $context = array())
         {
-            return \Monolog\Logger::debug($message, $context);
+            return \Monolog\Logger::addDebug($message, $context);
         }
         
         /**
@@ -6058,12 +6098,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function info($message, $context = array())
         {
-            return \Monolog\Logger::info($message, $context);
+            return \Monolog\Logger::addInfo($message, $context);
         }
         
         /**
@@ -6071,12 +6111,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function notice($message, $context = array())
         {
-            return \Monolog\Logger::notice($message, $context);
+            return \Monolog\Logger::addNotice($message, $context);
         }
         
         /**
@@ -6084,12 +6124,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function warning($message, $context = array())
         {
-            return \Monolog\Logger::warning($message, $context);
+            return \Monolog\Logger::addWarning($message, $context);
         }
         
         /**
@@ -6097,12 +6137,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function error($message, $context = array())
         {
-            return \Monolog\Logger::error($message, $context);
+            return \Monolog\Logger::addError($message, $context);
         }
         
         /**
@@ -6110,12 +6150,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function critical($message, $context = array())
         {
-            return \Monolog\Logger::critical($message, $context);
+            return \Monolog\Logger::addCritical($message, $context);
         }
         
         /**
@@ -6123,12 +6163,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function alert($message, $context = array())
         {
-            return \Monolog\Logger::alert($message, $context);
+            return \Monolog\Logger::addAlert($message, $context);
         }
         
         /**
@@ -6136,12 +6176,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function emergency($message, $context = array())
         {
-            return \Monolog\Logger::emergency($message, $context);
+            return \Monolog\Logger::addEmergency($message, $context);
         }
         
         /**
@@ -6243,7 +6283,18 @@ namespace Illuminate\Support\Facades {
      * @method static array failures()
      * @method static mixed queue(string|array|\Illuminate\Contracts\Mail\Mailable $view, string $queue = null)
      * @method static mixed later(\DateTimeInterface|\DateInterval|int $delay, string|array|\Illuminate\Contracts\Mail\Mailable $view, string $queue = null)
+     * @method static void assertSent(string $mailable, \Closure|string $callback = null)
+     * @method static void assertNotSent(string $mailable, \Closure|string $callback = null)
+     * @method static void assertNothingSent()
+     * @method static void assertQueued(string $mailable, \Closure|string $callback = null)
+     * @method static void assertNotQueued(string $mailable, \Closure|string $callback = null)
+     * @method static void assertNothingQueued()
+     * @method static \Illuminate\Support\Collection sent(string $mailable, \Closure|string $callback = null)
+     * @method static bool hasSent(string $mailable)
+     * @method static \Illuminate\Support\Collection queued(string $mailable, \Closure|string $callback = null)
+     * @method static bool hasQueued(string $mailable)
      * @see \Illuminate\Mail\Mailer
+     * @see \Illuminate\Support\Testing\Fakes\MailFake
      */ 
     class Mail {
         
@@ -6395,6 +6446,7 @@ namespace Illuminate\Support\Facades {
          * @param string|array|\Illuminate\Contracts\Mail\Mailable $view
          * @param string|null $queue
          * @return mixed 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function queue($view, $queue = null)
@@ -6437,6 +6489,7 @@ namespace Illuminate\Support\Facades {
          * @param string|array|\Illuminate\Contracts\Mail\Mailable $view
          * @param string|null $queue
          * @return mixed 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function later($delay, $view, $queue = null)
@@ -7381,6 +7434,19 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Register a callback to be executed when creating job payloads.
+         *
+         * @param callable $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function createPayloadUsing($callback)
+        {
+            //Method inherited from \Illuminate\Queue\Queue            
+            \Illuminate\Queue\SyncQueue::createPayloadUsing($callback);
+        }
+        
+        /**
          * Set the IoC container instance.
          *
          * @param \Illuminate\Container\Container $container
@@ -7481,6 +7547,18 @@ namespace Illuminate\Support\Facades {
         public static function intended($default = '/', $status = 302, $headers = array(), $secure = null)
         {
             return \Illuminate\Routing\Redirector::intended($default, $status, $headers, $secure);
+        }
+        
+        /**
+         * Set the intended url.
+         *
+         * @param string $url
+         * @return void 
+         * @static 
+         */ 
+        public static function setIntendedUrl($url)
+        {
+            \Illuminate\Routing\Redirector::setIntendedUrl($url);
         }
         
         /**
@@ -8846,7 +8924,7 @@ namespace Illuminate\Support\Facades {
          *  * _format request attribute
          *  * $default
          *
-         * @param string $default The default format
+         * @param string|null $default The default format
          * @return string The request format
          * @static 
          */ 
@@ -9307,7 +9385,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function server($key = null, $default = null)
@@ -9332,7 +9410,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function header($key = null, $default = null)
@@ -9476,7 +9554,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function query($key = null, $default = null)
@@ -9489,7 +9567,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function post($key = null, $default = null)
@@ -9514,7 +9592,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function cookie($key = null, $default = null)
@@ -9603,7 +9681,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function validate($rules, $params = null)
         {
-            return \Illuminate\Http\Request::validate($rules, $params);
+            return \Illuminate\Http\Request::Illuminate\Foundation\Providers\{closure}($rules, $params);
         }
         
         /**
@@ -9611,9 +9689,9 @@ namespace Illuminate\Support\Facades {
          *
          * @static 
          */ 
-        public static function hasValidSignature()
+        public static function hasValidSignature($absolute = true)
         {
-            return \Illuminate\Http\Request::hasValidSignature();
+            return \Illuminate\Http\Request::Illuminate\Foundation\Providers\{closure}($absolute);
         }
          
     }
@@ -9906,9 +9984,11 @@ namespace Illuminate\Support\Facades {
      * @method static \Illuminate\Routing\RouteRegistrar name(string $value)
      * @method static \Illuminate\Routing\RouteRegistrar namespace(string $value)
      * @method static \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar group(array|\Closure|string $attributes, \Closure|string $routes)
-     * @method static \Illuminate\Routing\Route redirect(string $uri, string $destination, int $status = 301)
+     * @method static \Illuminate\Routing\Route redirect(string $uri, string $destination, int $status = 302)
+     * @method static \Illuminate\Routing\Route permanentRedirect(string $uri, string $destination)
      * @method static \Illuminate\Routing\Route view(string $uri, string $view, array $data = [])
      * @method static void bind(string $key, string|callable $binder)
+     * @method static void model(string $key, string $class, \Closure|null $callback = null)
      * @method static \Illuminate\Routing\Route current()
      * @method static string|null currentRouteName()
      * @method static string|null currentRouteAction()
@@ -12351,12 +12431,13 @@ namespace Illuminate\Support\Facades {
          * Determine if the given request has a valid signature.
          *
          * @param \Illuminate\Http\Request $request
+         * @param bool $absolute
          * @return bool 
          * @static 
          */ 
-        public static function hasValidSignature($request)
+        public static function hasValidSignature($request, $absolute = true)
         {
-            return \Illuminate\Routing\UrlGenerator::hasValidSignature($request);
+            return \Illuminate\Routing\UrlGenerator::hasValidSignature($request, $absolute);
         }
         
         /**
@@ -13151,6 +13232,44 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            \Illuminate\View\Factory::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            \Illuminate\View\Factory::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \Illuminate\View\Factory::hasMacro($name);
+        }
+        
+        /**
          * Start a component rendering process.
          *
          * @param string $name
@@ -13551,70 +13670,181 @@ namespace Illuminate\Support\Facades {
  
 }
 
-namespace Riverskies\Laravel\MobileDetect\Facades { 
+namespace Arrilot\Widgets { 
 
     /**
      * 
      *
      */ 
-    class MobileDetect {
+    class Facade {
         
         /**
-         * Get the current script version.
+         * Run widget without magic method.
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function run()
+        {
+            return \Arrilot\Widgets\Factories\WidgetFactory::run();
+        }
+        
+        /**
+         * Encrypt widget params to be transported via HTTP.
+         *
+         * @param string $params
+         * @return string 
+         * @static 
+         */ 
+        public static function encryptWidgetParams($params)
+        {
+            //Method inherited from \Arrilot\Widgets\Factories\AbstractWidgetFactory            
+            return \Arrilot\Widgets\Factories\WidgetFactory::encryptWidgetParams($params);
+        }
+        
+        /**
+         * Decrypt widget params that were transported via HTTP.
+         *
+         * @param string $params
+         * @return string 
+         * @static 
+         */ 
+        public static function decryptWidgetParams($params)
+        {
+            //Method inherited from \Arrilot\Widgets\Factories\AbstractWidgetFactory            
+            return \Arrilot\Widgets\Factories\WidgetFactory::decryptWidgetParams($params);
+        }
+         
+    }
+
+    /**
+     * 
+     *
+     */ 
+    class AsyncFacade {
+        
+        /**
+         * Run widget without magic method.
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function run()
+        {
+            return \Arrilot\Widgets\Factories\AsyncWidgetFactory::run();
+        }
+        
+        /**
+         * Encrypt widget params to be transported via HTTP.
+         *
+         * @param string $params
+         * @return string 
+         * @static 
+         */ 
+        public static function encryptWidgetParams($params)
+        {
+            //Method inherited from \Arrilot\Widgets\Factories\AbstractWidgetFactory            
+            return \Arrilot\Widgets\Factories\AsyncWidgetFactory::encryptWidgetParams($params);
+        }
+        
+        /**
+         * Decrypt widget params that were transported via HTTP.
+         *
+         * @param string $params
+         * @return string 
+         * @static 
+         */ 
+        public static function decryptWidgetParams($params)
+        {
+            //Method inherited from \Arrilot\Widgets\Factories\AbstractWidgetFactory            
+            return \Arrilot\Widgets\Factories\AsyncWidgetFactory::decryptWidgetParams($params);
+        }
+         
+    }
+ 
+}
+
+namespace Intervention\Image\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Image {
+        
+        /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @return self 
+         * @static 
+         */ 
+        public static function configure($config = array())
+        {
+            return \Intervention\Image\ImageManager::configure($config);
+        }
+        
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+            return \Intervention\Image\ImageManager::make($data);
+        }
+        
+        /**
+         * Creates an empty image canvas
+         *
+         * @param int $width
+         * @param int $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
+        }
+        
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param int $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
+        }
+         
+    }
+ 
+}
+
+namespace TCG\Voyager\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Voyager {
+        
+        /**
          * 
-         * This is useful for the demo.php file,
-         * so people can check on what version they are testing
-         * for mobile devices.
          *
-         * @return string The version number in semantic version format.
          * @static 
          */ 
-        public static function getScriptVersion()
+        public static function model($name)
         {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getScriptVersion();
-        }
-        
-        /**
-         * Set the HTTP Headers. Must be PHP-flavored. This method will reset existing headers.
-         *
-         * @param array $httpHeaders The headers to set. If null, then using PHP's _SERVER to extract
-         *                           the headers. The default null is left for backwards compatibility.
-         * @static 
-         */ 
-        public static function setHttpHeaders($httpHeaders = null)
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::setHttpHeaders($httpHeaders);
-        }
-        
-        /**
-         * Retrieves the HTTP headers.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getHttpHeaders()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getHttpHeaders();
-        }
-        
-        /**
-         * Retrieves a particular header. If it doesn't exist, no exception/error is caused.
-         * 
-         * Simply null is returned.
-         *
-         * @param string $header The name of the header to retrieve. Can be HTTP compliant such as
-         *                       "User-Agent" or "X-Device-User-Agent" or can be php-esque with the
-         *                       all-caps, HTTP_ prefixed, underscore seperated awesomeness.
-         * @return string|null The value of the header.
-         * @static 
-         */ 
-        public static function getHttpHeader($header)
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getHttpHeader($header);
+            return \TCG\Voyager\Voyager::model($name);
         }
         
         /**
@@ -13622,89 +13852,9 @@ namespace Riverskies\Laravel\MobileDetect\Facades {
          *
          * @static 
          */ 
-        public static function getMobileHeaders()
+        public static function modelClass($name)
         {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getMobileHeaders();
-        }
-        
-        /**
-         * Get all possible HTTP headers that
-         * can contain the User-Agent string.
-         *
-         * @return array List of HTTP headers.
-         * @static 
-         */ 
-        public static function getUaHttpHeaders()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getUaHttpHeaders();
-        }
-        
-        /**
-         * Set CloudFront headers
-         * http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/header-caching.html#header-caching-web-device
-         *
-         * @param array $cfHeaders List of HTTP headers
-         * @return boolean If there were CloudFront headers to be set
-         * @static 
-         */ 
-        public static function setCfHeaders($cfHeaders = null)
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::setCfHeaders($cfHeaders);
-        }
-        
-        /**
-         * Retrieves the cloudfront headers.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getCfHeaders()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getCfHeaders();
-        }
-        
-        /**
-         * Set the User-Agent to be used.
-         *
-         * @param string $userAgent The user agent string to set.
-         * @return string|null 
-         * @static 
-         */ 
-        public static function setUserAgent($userAgent = null)
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::setUserAgent($userAgent);
-        }
-        
-        /**
-         * Retrieve the User-Agent.
-         *
-         * @return string|null The user agent if it's set.
-         * @static 
-         */ 
-        public static function getUserAgent()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getUserAgent();
-        }
-        
-        /**
-         * Set the detection type. Must be one of self::DETECTION_TYPE_MOBILE or
-         * self::DETECTION_TYPE_EXTENDED. Otherwise, nothing is set.
-         *
-         * @deprecated since version 2.6.9
-         * @param string $type The type. Must be a self::DETECTION_TYPE_* constant. The default
-         *                     parameter is null which will default to self::DETECTION_TYPE_MOBILE.
-         * @static 
-         */ 
-        public static function setDetectionType($type = null)
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::setDetectionType($type);
+            return \TCG\Voyager\Voyager::modelClass($name);
         }
         
         /**
@@ -13712,10 +13862,9 @@ namespace Riverskies\Laravel\MobileDetect\Facades {
          *
          * @static 
          */ 
-        public static function getMatchingRegex()
+        public static function useModel($name, $object)
         {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getMatchingRegex();
+            return \TCG\Voyager\Voyager::useModel($name, $object);
         }
         
         /**
@@ -13723,268 +13872,225 @@ namespace Riverskies\Laravel\MobileDetect\Facades {
          *
          * @static 
          */ 
-        public static function getMatchesArray()
+        public static function view($name, $parameters = array())
         {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getMatchesArray();
+            return \TCG\Voyager\Voyager::view($name, $parameters);
         }
         
         /**
-         * Retrieve the list of known phone devices.
-         *
-         * @return array List of phone devices.
-         * @static 
-         */ 
-        public static function getPhoneDevices()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getPhoneDevices();
-        }
-        
-        /**
-         * Retrieve the list of known tablet devices.
-         *
-         * @return array List of tablet devices.
-         * @static 
-         */ 
-        public static function getTabletDevices()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getTabletDevices();
-        }
-        
-        /**
-         * Alias for getBrowsers() method.
-         *
-         * @return array List of user agents.
-         * @static 
-         */ 
-        public static function getUserAgents()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getUserAgents();
-        }
-        
-        /**
-         * Retrieve the list of known browsers. Specifically, the user agents.
-         *
-         * @return array List of browsers / user agents.
-         * @static 
-         */ 
-        public static function getBrowsers()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getBrowsers();
-        }
-        
-        /**
-         * Retrieve the list of known utilities.
-         *
-         * @return array List of utilities.
-         * @static 
-         */ 
-        public static function getUtilities()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getUtilities();
-        }
-        
-        /**
-         * Method gets the mobile detection rules. This method is used for the magic methods $detect->is*().
-         *
-         * @deprecated since version 2.6.9
-         * @return array All the rules (but not extended).
-         * @static 
-         */ 
-        public static function getMobileDetectionRules()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getMobileDetectionRules();
-        }
-        
-        /**
-         * Method gets the mobile detection rules + utilities.
          * 
-         * The reason this is separate is because utilities rules
-         * don't necessary imply mobile. This method is used inside
-         * the new $detect->is('stuff') method.
          *
-         * @deprecated since version 2.6.9
-         * @return array All the rules + extended.
          * @static 
          */ 
-        public static function getMobileDetectionRulesExtended()
+        public static function onLoadingView($name, $closure)
         {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getMobileDetectionRulesExtended();
+            return \TCG\Voyager\Voyager::onLoadingView($name, $closure);
         }
         
         /**
-         * Retrieve the current set of rules.
-         *
-         * @deprecated since version 2.6.9
-         * @return array 
-         * @static 
-         */ 
-        public static function getRules()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getRules();
-        }
-        
-        /**
-         * Retrieve the list of mobile operating systems.
-         *
-         * @return array The list of mobile operating systems.
-         * @static 
-         */ 
-        public static function getOperatingSystems()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getOperatingSystems();
-        }
-        
-        /**
-         * Check the HTTP headers for signs of mobile.
          * 
-         * This is the fastest mobile check possible; it's used
-         * inside isMobile() method.
          *
+         * @static 
+         */ 
+        public static function formField($row, $dataType, $dataTypeContent)
+        {
+            return \TCG\Voyager\Voyager::formField($row, $dataType, $dataTypeContent);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function afterFormFields($row, $dataType, $dataTypeContent)
+        {
+            return \TCG\Voyager\Voyager::afterFormFields($row, $dataType, $dataTypeContent);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addFormField($handler)
+        {
+            return \TCG\Voyager\Voyager::addFormField($handler);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addAfterFormField($handler)
+        {
+            return \TCG\Voyager\Voyager::addAfterFormField($handler);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function formFields()
+        {
+            return \TCG\Voyager\Voyager::formFields();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addAction($action)
+        {
+            return \TCG\Voyager\Voyager::addAction($action);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function replaceAction($actionToReplace, $action)
+        {
+            return \TCG\Voyager\Voyager::replaceAction($actionToReplace, $action);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function actions()
+        {
+            return \TCG\Voyager\Voyager::actions();
+        }
+        
+        /**
+         * Get a collection of the dashboard widgets.
+         *
+         * @return \Arrilot\Widgets\WidgetGroup 
+         * @static 
+         */ 
+        public static function dimmers()
+        {
+            return \TCG\Voyager\Voyager::dimmers();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setting($key, $default = null)
+        {
+            return \TCG\Voyager\Voyager::setting($key, $default);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function image($file, $default = '')
+        {
+            return \TCG\Voyager\Voyager::image($file, $default);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function routes()
+        {
+            return \TCG\Voyager\Voyager::routes();
+        }
+        
+        /**
+         * 
+         *
+         * @deprecated 
+         * @static 
+         */ 
+        public static function can($permission)
+        {
+            return \TCG\Voyager\Voyager::can($permission);
+        }
+        
+        /**
+         * 
+         *
+         * @deprecated 
+         * @static 
+         */ 
+        public static function canOrFail($permission)
+        {
+            return \TCG\Voyager\Voyager::canOrFail($permission);
+        }
+        
+        /**
+         * 
+         *
+         * @deprecated 
+         * @static 
+         */ 
+        public static function canOrAbort($permission, $statusCode = 403)
+        {
+            return \TCG\Voyager\Voyager::canOrAbort($permission, $statusCode);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getVersion()
+        {
+            return \TCG\Voyager\Voyager::getVersion();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addAlert($alert)
+        {
+            return \TCG\Voyager\Voyager::addAlert($alert);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function alerts()
+        {
+            return \TCG\Voyager\Voyager::alerts();
+        }
+        
+        /**
+         * 
+         *
+         * @param string|\TCG\Voyager\Model|\TCG\Voyager\Collection $model
          * @return bool 
          * @static 
          */ 
-        public static function checkHttpHeadersForMobile()
+        public static function translatable($model)
         {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::checkHttpHeadersForMobile();
+            return \TCG\Voyager\Voyager::translatable($model);
         }
         
         /**
-         * Check if the device is mobile.
          * 
-         * Returns true if any type of mobile device detected, including special ones
          *
-         * @param null $userAgent deprecated
-         * @param null $httpHeaders deprecated
-         * @return bool 
          * @static 
          */ 
-        public static function isMobile($userAgent = null, $httpHeaders = null)
+        public static function getLocales()
         {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::isMobile($userAgent, $httpHeaders);
-        }
-        
-        /**
-         * Check if the device is a tablet.
-         * 
-         * Return true if any type of tablet device is detected.
-         *
-         * @param string $userAgent deprecated
-         * @param array $httpHeaders deprecated
-         * @return bool 
-         * @static 
-         */ 
-        public static function isTablet($userAgent = null, $httpHeaders = null)
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::isTablet($userAgent, $httpHeaders);
-        }
-        
-        /**
-         * This method checks for a certain property in the
-         * userAgent.
-         *
-         * @todo : The httpHeaders part is not yet used.
-         * @param string $key
-         * @param string $userAgent deprecated
-         * @param string $httpHeaders deprecated
-         * @return bool|int|null 
-         * @static 
-         */ 
-        public static function is($key, $userAgent = null, $httpHeaders = null)
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::is($key, $userAgent, $httpHeaders);
-        }
-        
-        /**
-         * Some detection rules are relative (not standard),
-         * because of the diversity of devices, vendors and
-         * their conventions in representing the User-Agent or
-         * the HTTP headers.
-         * 
-         * This method will be used to check custom regexes against
-         * the User-Agent string.
-         *
-         * @param $regex
-         * @param string $userAgent
-         * @return bool 
-         * @todo : search in the HTTP headers too.
-         * @static 
-         */ 
-        public static function match($regex, $userAgent = null)
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::match($regex, $userAgent);
-        }
-        
-        /**
-         * Get the properties array.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getProperties()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::getProperties();
-        }
-        
-        /**
-         * Prepare the version number.
-         *
-         * @todo Remove the error supression from str_replace() call.
-         * @param string $ver The string version, like "2.6.21.2152";
-         * @return float 
-         * @static 
-         */ 
-        public static function prepareVersionNo($ver)
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::prepareVersionNo($ver);
-        }
-        
-        /**
-         * Check the version of the given property in the User-Agent.
-         * 
-         * Will return a float number. (eg. 2_0 will return 2.0, 4.3.1 will return 4.31)
-         *
-         * @param string $propertyName The name of the property. See self::getProperties() array
-         *                             keys for all possible properties.
-         * @param string $type Either self::VERSION_TYPE_STRING to get a string value or
-         *                             self::VERSION_TYPE_FLOAT indicating a float value. This parameter
-         *                             is optional and defaults to self::VERSION_TYPE_STRING. Passing an
-         *                             invalid parameter will default to the this type as well.
-         * @return string|float The version of the property we are trying to extract.
-         * @static 
-         */ 
-        public static function version($propertyName, $type = 'text')
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::version($propertyName, $type);
-        }
-        
-        /**
-         * Retrieve the mobile grading, using self::MOBILE_GRADE_* constants.
-         *
-         * @return string One of the self::MOBILE_GRADE_* constants.
-         * @static 
-         */ 
-        public static function mobileGrade()
-        {
-            //Method inherited from \Mobile_Detect            
-            return \Detection\MobileDetect::mobileGrade();
+            return \TCG\Voyager\Voyager::getLocales();
         }
          
     }
@@ -14909,7 +15015,7 @@ namespace  {
              * Add a join clause to the query.
              *
              * @param string $table
-             * @param string $first
+             * @param \Closure|string $first
              * @param string|null $operator
              * @param string|null $second
              * @param string $type
@@ -14926,7 +15032,7 @@ namespace  {
              * Add a "join where" clause to the query.
              *
              * @param string $table
-             * @param string $first
+             * @param \Closure|string $first
              * @param string $operator
              * @param string $second
              * @param string $type
@@ -14943,7 +15049,7 @@ namespace  {
              *
              * @param \Closure|\Illuminate\Database\Query\Builder|string $query
              * @param string $as
-             * @param string $first
+             * @param \Closure|string $first
              * @param string|null $operator
              * @param string|null $second
              * @param string $type
@@ -14961,7 +15067,7 @@ namespace  {
              * Add a left join to the query.
              *
              * @param string $table
-             * @param string $first
+             * @param \Closure|string $first
              * @param string|null $operator
              * @param string|null $second
              * @return \Illuminate\Database\Query\Builder|static 
@@ -15007,7 +15113,7 @@ namespace  {
              * Add a right join to the query.
              *
              * @param string $table
-             * @param string $first
+             * @param \Closure|string $first
              * @param string|null $operator
              * @param string|null $second
              * @return \Illuminate\Database\Query\Builder|static 
@@ -15053,7 +15159,7 @@ namespace  {
              * Add a "cross join" clause to the query.
              *
              * @param string $table
-             * @param string|null $first
+             * @param \Closure|string|null $first
              * @param string|null $operator
              * @param string|null $second
              * @return \Illuminate\Database\Query\Builder|static 
@@ -16364,7 +16470,13 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
-    class MobileDetect extends \Riverskies\Laravel\MobileDetect\Facades\MobileDetect {}
+    class Widget extends \Arrilot\Widgets\Facade {}
+
+    class AsyncWidget extends \Arrilot\Widgets\AsyncFacade {}
+
+    class Image extends \Intervention\Image\Facades\Image {}
+
+    class Voyager extends \TCG\Voyager\Facades\Voyager {}
  
 }
 

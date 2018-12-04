@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends \TCG\Voyager\Models\User
 {
     use Notifiable;
 
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'alumni_id'
+        'name', 'email', 'password', 'alumni_id', 'role_id'
     ];
 
     /**
@@ -29,5 +29,9 @@ class User extends Authenticatable
 
     public function alumni(){
         return $this->belongsTo('App\Alumni');
+    }
+
+    public function doSurvey(){
+        return $this->hasMany('App\DoSurvey');
     }
 }

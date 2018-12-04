@@ -16,13 +16,13 @@ class CreateAlumniTable extends Migration
         Schema::create('alumni', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255);
-            $table->date('birthday');
-            $table->unsignedInteger('province_id');
-            $table->unsignedInteger('district_id');
-            $table->unsignedInteger('course_id');
-            $table->string('phone')->unique();
-            $table->string('mail', 255);
-            $table->string('avatar', 1000);
+            $table->date('birthday')->nullable();
+            $table->unsignedInteger('province_id')->nullable();
+            $table->unsignedInteger('district_id')->nullable();
+            $table->unsignedInteger('course_id')->nullable();
+            $table->string('phone')->unique()->nullable();
+            $table->string('mail', 255)->unique();
+            $table->string('avatar', 1000)->nullable();
             $table->foreign('province_id')
                 ->references('id')
                 ->on('provinces')

@@ -15,20 +15,26 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 //trang alumni gọi phương thức show của HomeController
-
-
+Auth::routes();
+Route::get('/', 'AppController@show')->name('home')->middleware('auth');
 //gọi trang cá nhân người dùng
 Route::get('/profile/{alumni}', function (Alumni $alumni){
     return view('profile', ['alumni'=>$alumni]);
 })->name('profile')->middleware('auth');
-
 //get: gọi trang update profile, post: lưu thông tin update
 Route::get('/update', 'AppController@showUpdateForm')->name('update')->middleware('auth');
 Route::post('/update', 'AppController@storeInfo');
-
-Auth::routes();
-Route::get('/', 'AppController@show')->name('home')->middleware('auth');
-
+//hiển thị thống kê câu trả lời
+Route::get('/statistics/{survey}/{question}', 'ChartController@showCharts')->name('showchart');
+//tìm kiếm theo tên
+Route::post('/search', 'AppController@search')->name('search');
+//các trang khảo sát
+Route::group(['prefix' => 'survey', 'middleware' => 'auth'], function (){
+    Route::get('/list','SurveyController@surveyList')->name('survey.list');
+    Route::get('/list/{survey}','SurveyController@questions')->name('survey.do');
+    Route::post('/list/{survey}', 'SurveyController@submitSurvey')->name('survey.submit');
+});
+//các chức năng chỉnh sửa thông tin người dùng
 Route::prefix('/edit')->group(function (){
     Route::post('/username/{placeholder}', 'EditController@editName')->name('name');
     Route::post('/userdob/{placeholder}', 'EditController@editDob')->name('birthday');
@@ -38,7 +44,7 @@ Route::prefix('/edit')->group(function (){
     Route::post('/useravatar', 'EditController@editAvatar')->name('avatar');
     Route::post('/useraddress/{placeholder1?}/{placeholder2?}', 'EditController@editAddress')->name('address');
 });
-
+//các chức năng xóa thông tin
 Route::prefix('/delete')->group(function (){
     Route::post('/userdob', 'EditController@deleteDob')->name('delbirthday');
     Route::post('/userphone', 'EditController@deletePhone')->name('delphone');
@@ -46,8 +52,11 @@ Route::prefix('/delete')->group(function (){
     Route::post('/usercourse', 'EditController@deleteCourse')->name('delcourse');
     Route::post('/useraddress', 'EditController@deleteAddress')->name('deladdress');
 });
-
+//lưu công việc
 Route::post('/savejob', 'CompanyController@saveJob')->name('savejob');
+//cập nhật công việc
 Route::post('/updatejob', 'CompanyController@updateJob')->name('updatejob');
-
-Route::get('/statistics', 'ChartController@showCharts')->name('showchart');
+//admin
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

@@ -3,7 +3,7 @@
 
     </div>
     <div class="col-xs-10 col-sm-10 col-md-8 col-lg-8">
-        <a href="{{route('profile', $al->id)}}">
+        <a href="{{route('profile', $al)}}">
             <div class="wrapper bordered">
                 <div class="avt">
                     @if(!is_null($al->avatar))
@@ -26,21 +26,20 @@
                         @endif
 					</span>
                     <span style="display: flex;">
-						Course:
-                        @if(!is_null($al->course))
-						    <p>{{$al->course->name}}</p>
-                        @else
-                            <p><i>please update your info</i></p>
-                        @endif
-					</span>
-                    <span style="display: flex;">
 						Address:
                         @if(!is_null($al->district) || !is_null($al->province))
                             <p>{{$al->district->name}} - {{$al->province->name}}</p>
                         @else
                             <p><i>please update your info</i></p>
                         @endif
-
+					</span>
+                    <span style="display: flex;">
+						Education:
+                        @if(!is_null($al->course) && !is_null($al->course->school))
+                            <p>{{$al->course->school}}</p>
+                        @else
+                            <p><i>please update your info</i></p>
+                        @endif
 					</span>
                 </div>
             </div>

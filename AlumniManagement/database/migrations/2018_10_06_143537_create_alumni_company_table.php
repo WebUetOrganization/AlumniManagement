@@ -15,7 +15,9 @@ class CreateAlumniCompanyTable extends Migration
     {
         Schema::create('alumni_company', function (Blueprint $table) {
             $table->string('job', 255);
-            $table->integer('salary');
+            $table->integer('salary')->nullable();
+            $table->date('start_time')->nullable();
+            $table->date('quit_time')->nullable();
             $table->unsignedInteger('alumni_id');
             $table->unsignedInteger('company_id');
             $table->foreign('alumni_id')

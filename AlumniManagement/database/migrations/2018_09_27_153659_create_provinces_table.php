@@ -16,7 +16,7 @@ class CreateProvincesTable extends Migration
         Schema::create('provinces', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255);
-            $table->boolean('active');
+            $table->boolean('active')->default(1);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

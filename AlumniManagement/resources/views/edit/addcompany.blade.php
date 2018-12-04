@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    {{--add new job modal--}}
     <div id="myPopup" class="pop row">
         <div class="popup-content">
             <div class="popup-header">
@@ -36,7 +37,7 @@
             </div>
         </div>
     </div>
-
+    {{--update a job modal--}}
     <div id="myPopup1" class="pop row">
         <div class="popup-content">
             <div class="popup-header">
@@ -52,12 +53,14 @@
                                 <option value="{{$com->id}}">{{$com->name}}</option>
                             @endforeach
                         </select></p>
+                    <label for="start">new organization:</label>
+                    <input type="text" id="company1" name="company" class="form-control" placeholder="Organizaiton...">
                     <label for="start">start time:</label>
                     <input type="date" id="start" name="start" class="form-control">
                     <label for="quit">quit time:</label>
                     <input type="date" id="quit" name="quit" class="form-control" placeholder="Quit time..." >
                     <label for="job">position in the organization:</label>
-                    <input type="text" id="job" name="job" class="form-control" value="Job..." >
+                    <input type="text" id="job" name="job" class="form-control" placeholder="Job..." >
                     <label for="salary">salary:</label>
                     <input type="number" id="salary" name="salary" class="form-control" placeholder="Salary..." min="0" >
                     <label for="choice">type of the organization (optional):</label>
@@ -78,7 +81,7 @@
             </div>
         </div>
     </div>
-
+    {{--upload avatar modal--}}
     <div id="myPopup2" class="pop row">
         <div class="popup-content">
             <div class="popup-header">

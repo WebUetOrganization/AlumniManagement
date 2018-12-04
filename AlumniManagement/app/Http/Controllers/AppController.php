@@ -29,6 +29,13 @@ class AppController extends Controller {
         return view('navbar', ['alumni'=>$alumni]);
     }
 
+    public function search(Request $request){
+        $name = $request->input('search');
+        $alumni = Alumni::where('name', 'like',"%{$name}%")->get();
+//        dd($name);
+        return view('navbar', ['alumni'=>$alumni]);
+    }
+
     //hiển thị trang cập nhật thông tin
     public function showUpdateForm() {
         return view('form');
@@ -91,7 +98,7 @@ class AppController extends Controller {
                 ['address' => $request->input('address'),
                     'type' => $request->input('choice')]
             );
-            $alumnus->company->attach($comp->id, [
+            $alumnus->company()->attach($comp->id, [
                 'start_time' => $request->input('start'),
                 'quit_time' => $request->input('quit'),
                 'job' => $request->input('job'),

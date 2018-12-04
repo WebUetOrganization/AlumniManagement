@@ -8,26 +8,11 @@ function readURL(input) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#blah')
-                .attr('src', e.target.result);
+            $('#blah').attr('src', e.target.result);
         };
         reader.readAsDataURL(input.files[0]);
     }
 }
-let b1 = document.getElementById('labe');
-let b2 = document.getElementById('badge1');
-
-b1.onmouseover = function selectAva() {
-    b2.style.display = "block";
-}
-
-b1.onmouseout = function unselectAva() {
-    b2.style.display = "none";
-}
-
-// function openNav() {
-//     document.getElementById("sideMenu").style.width = "250px";
-// }
 
 function openNav() {
     document.getElementById("sideMenu").style.width = "250px";

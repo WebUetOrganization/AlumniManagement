@@ -28,9 +28,8 @@ class Alumni extends Model
     //tạo quan hệ n-n với bảng cty, tạo bảng alumni_company để lưu thông tin về công việc của sv trong cty đó
     public function company(){
         return $this->belongsToMany('App\Company', 'alumni_company', 'alumni_id', 'company_id')
-            ->withPivot('job','salary', 'start_time', 'quit_time')->withTimestamps();
+            ->withPivot('job', 'salary', 'start_time', 'quit_time')->withTimestamps();
     }
-
     public function user(){
         return $this->hasOne('App\User');
     }
